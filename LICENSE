@@ -1,0 +1,42 @@
+LICENSE SCOPE
+
+The MIT License below applies to the research material in this repository:
+results and evaluation commentary, methodology descriptions, numerical scores
+and tables to the extent copyright applies, repository documentation outside
+writings/, and aggregation code.
+
+EXCLUDED CREATIVE CONTENT: The contents of writings/ and all protected creative
+story expression reproduced elsewhere in this repository, including creative
+quotations, dialogue, scene descriptions, and expressive plot material, are
+excluded from the MIT grant. This exclusion applies even when that expression
+appears inside an otherwise MIT-licensed research report or judge's commentary.
+See writings/LICENSE.md for the creative-content rights notice. No film,
+television, or other adaptation rights in the protected story expression are
+granted by this repository's research license.
+
+Any third-party rights remain with their respective holders. No exclusive
+rights are asserted in ideas, facts, methods, or other unprotectable material.
+For this scoped grant, "Software" in the standard MIT text below refers to the
+research material defined above.
+
+MIT License
+
+Copyright (c) 2026 John (slogonomo)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

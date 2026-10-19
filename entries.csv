@@ -1,0 +1,14 @@
+entry,writer,format,original_word_count
+A,Grok 4.5,15-beat,963
+B,Gemini 3.6 Flash,15-beat,947
+C,Kimi K3,15-beat,1266
+D,Kimi K3,story-engine,1587
+E,Grok 4.5,story-engine,1384
+F,DeepSeek V4 Flash 0731,story-engine,1633
+G,DeepSeek V4 Flash 0731,15-beat,1010
+H,Opus 5,story-engine,3845
+I,Opus 5,15-beat,1424
+J,GPT-5.6 Sol,15-beat,882
+K,Gemini 3.6 Flash,story-engine,1342
+L,GPT-5.6 Sol,story-engine,2513
+M,John,15-beat,778
