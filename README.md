@@ -1,8 +1,10 @@
 # LLM Writing Evaluation
 
-Six model families wrote film beat sheets from the same story notes using two writing frameworks. John, the story's author, scored a blinded packet; six model judges then scored the same 13 entries. Their preferences diverged sharply. A second round separated instruction-following, emotional writing, and creativity, exposing mistaken rule enforcement and a possible preference for longer answers.
+Six frontier model families wrote film beat sheets from my story notes using two different writing frameworks (`Save the Cat` and a custom framework). I scored the blinded packet first—primarily looking for strong prose, energy, and usable creative ideas—and then had a panel of six LLM judges score the same 13 blinded entries (12 model-generated entries plus my own unmarked human-written baseline).
 
-This is an exploratory experiment from **August 8, 2026**, involving **one story, 12 model-written entries, one human-written entry, and one human rater**. It is a case study in evaluating writing, rather than a general model leaderboard. Model names are the labels recorded in the experiment.
+I started this on **August 8, 2026** while under a tight production deadline on *The Silence Between Whales* with a simple practical goal: figure out which model could give me the best beat-sheet writing so I could spend my time learning sound design and color grading in DaVinci Resolve. What came back from the judging panel was much more interesting than the writing itself—our preferences diverged almost completely, every model judge ranked the unmarked human baseline dead last, and a second round separating instruction-following, emotional writing, and creativity exposed systematic length bias and faulty rule enforcement by the judges.
+
+*(Note: This is an exploratory pilot involving one story, 12 model entries, one human-written control, and one human rater—a case study in LLM-as-a-judge behavior on subjective creative tasks rather than a general benchmark.)*
 
 ## Start here
 
@@ -12,41 +14,39 @@ This is an exploratory experiment from **August 8, 2026**, involving **one story
 | [Results audit](RESULTS_AUDIT.md) | Verified findings, corrections, ballot inconsistencies, and interpretation limits |
 | [Recomputed results](computed-results.md) | Aggregate tables and correlations calculated from the published scores |
 | [Methodology](METHODOLOGY.md) | Design, judging criteria, blinding, model labels, and reproducibility limits |
-| [John's scores and comments](john-scores-2026-08-08.md) | The human ballot, including comments and reading-fatigue notes |
+| [My scores and comments](john-scores-2026-08-08.md) | My human ballot, including line-by-line reactions and reading-fatigue notes |
 | [Judge reports](panel/README.md) | All six model ballots from each round |
-| [Creative corpus](writings/README.md) | Drafts, polished versions, blinded entries, and John's original sheet |
+| [Creative corpus](writings/README.md) | Drafts, polished versions, blinded entries, and my original beat sheet |
 | [Answer key — spoilers](methodology/answer-key-spoilers.md) | Entry identities, recorded configurations, and polishing notes |
 | [Publication notes](PUBLICATION_NOTES.md) | Privacy cleanup, layout changes, and omitted filesystem artifacts |
 
 ## What stood out
 
-- **Panel agreement did not imply agreement with the author.** John's favorite, entry B, scored 9.5/10 from him and ranked 11th with the panel. The panel preferred H, at 9.72/10. Spearman correlation between John's scores and panel means was **0.0083** across all 13 entries, or **0.1933** across the 12 model entries alone. The model judges' pairwise correlations averaged 0.6915, with substantial variation.
-- **A written rubric did not ensure accurate rule enforcement.** In round two, two judges called the human entry too short. Its recorded whole-file count was **778 words**, within the reported 600–900-word target. Other criticisms of that entry were separate judgments and are preserved in the ballots.
-- **Length tracked scores, including instruction-following scores.** Across seven round-two entries, word count correlated with emotional-writing scores at **r = 0.7867** and skill-fit scores at **r = 0.5994**. Five of the six model entries exceeded the reported word target. These associations suggest a question for further testing; they do not establish that extra length caused higher scores.
-- **Different axes produced different winners.** Entry I led emotional writing, J led creativity, and C and I tied on skill fit. One ballot's commentary appears to confuse entries G, I, and J; the [audit](RESULTS_AUDIT.md) and [sensitivity analysis](computed-results.md#round-2) make that limitation explicit.
+- **Panel agreement did not imply agreement with the human author.** My favorite entry (**B**) got a **9.5/10** from me and ranked **11th** with the LLM panel. The panel's favorite (**H**, **9.72/10**) felt over-explained to me. Spearman correlation between my scores and the panel means was **0.0083** across all 13 entries (**0.1933** across the 12 model entries alone), while the model judges agreed fairly strongly with one another (mean pairwise correlation **0.6915**). And every single model judge ranked my unmarked human entry (**M**) dead last.
+- **A written rubric did not ensure accurate rule enforcement.** In Round 2, two model judges penalized the human entry for being "too short"—even though its recorded whole-file count was **778 words**, squarely inside the required **600–900-word** target.
+- **Length tracked scores—even on instruction-following.** Across the seven Round 2 entries, word count correlated strongly with emotional-writing scores (**r = 0.7867**) and skill-fit / instruction-following scores (**r = 0.5994**), despite **five of the six model entries violating the upper word-count limit**. Even when explicitly asked to grade adherence to the prompt's constraints, judges rewarded verbosity.
+- **Different axes produced different winners (and occasional judge confusion).** Entry **I** led emotional writing, **J** led creativity, and **C** and **I** tied on skill fit. One judge's ballot commentary appeared to mix up entries **G**, **I**, and **J**; see the [audit](RESULTS_AUDIT.md) and [sensitivity analysis](computed-results.md#round-2) for the breakdown with and without that ballot.
 
-The author was evaluating prose, energy, and useful creative ideas; several model judges emphasized structural development and causal completeness. The experiment makes that disagreement visible. It does not establish either preference as a universal measure of writing quality.
+In short: I was looking for voice, subtext, and sparks of usable originality, whereas the LLM judges consistently rewarded exhaustive structural completeness and length—even when that length broke the rules they were grading against.
 
 ## Data and reproducibility
 
-The score data are in [round1-scores.csv](round1-scores.csv), [round2-scores.csv](round2-scores.csv), and [entries.csv](entries.csv). To reproduce the aggregate report with Python 3 and no third-party packages:
+The score data live in [round1-scores.csv](round1-scores.csv), [round2-scores.csv](round2-scores.csv), and [entries.csv](entries.csv). To recompute the aggregate tables and correlations from the recorded ballots (Python 3 stdlib only):
 
 ```sh
 python3 scripts/recompute.py > computed-results.md
 ```
 
-This reproduces the arithmetic from the recorded ballots. The original full prompts, skill files, source story-notes document, complete inference settings, and session logs are not included in this snapshot, so it cannot reproduce the model generations or judging runs. See [Methodology](METHODOLOGY.md).
+The original full system prompts, local skill files, raw story-notes document, and session logs are not included in this snapshot, so the script reproduces the statistical aggregation rather than re-running model inference. See [Methodology](METHODOLOGY.md).
 
-For a fresh reading without the answer key, open the [blinded packet](writings/blind/README.md) directly. This README and the results reveal some entry identities.
+If you want to read the entries blind before looking at the answer key, start in [writings/blind/README.md](writings/blind/README.md).
 
 ## License and story rights
 
 **Research results, methodology, analysis, score tables, and aggregation code are available under the MIT license**, within the scope defined in [LICENSE](LICENSE).
 
-**The creative story material is excluded from MIT.** John's rights in the human-authored story expression are reserved, including film, television, and other adaptation rights. That exclusion covers the [writings](writings/) and protected creative expression quoted or reproduced in the research documents. Publishing the evaluation grants no permission to make a film from the protected story material. See [the creative-content rights notice](writings/LICENSE.md).
-
-Copyright protects human-authored expression, rather than ideas, methods, or facts; model-generated material may not itself be copyrightable. The rights notices reserve existing rights and do not assert new rights over unprotectable material. References: [MIT license text](https://opensource.org/license/mit) and [U.S. Copyright Office guidance](https://www.copyright.gov/what-is-copyright/).
+**The creative story material is excluded from MIT.** All rights in my human-authored story expression (*The Silence Between Whales*) are reserved, including film, television, and adaptation rights. That exclusion covers [writings/](writings/) and any protected creative expression quoted in the research documents. See [writings/LICENSE.md](writings/LICENSE.md).
 
 ## Citation
 
-John (slogonomo). *LLM Writing Evaluation: A Beat-Sheet Experiment*. Experiment dated August 8, 2026. <https://github.com/slogonomo/llm-writing-eval>. Cite the commit you used, since publication notes and audits may evolve. Research reuse is welcome under the MIT scope above; creative-content rights remain reserved.
+John Nelson (`slogonomo`). *LLM Writing Evaluation: A Beat-Sheet Experiment*. Experiment dated August 8, 2026. <https://github.com/slogonomo/llm-writing-eval>.
